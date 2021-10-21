@@ -14,15 +14,20 @@ class App extends Component {
     fetch(API)
       .then((res) => {
         if (res.ok) {
-          console.log(res);
+          // console.log(res);
           return res;
         }
         throw Error(res.status);
       })
-      .then()
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({
+          users: data.results,
+        });
+      })
       .catch((error) => console.log(error));
   };
-
   render() {
     const { users } = this.state;
     return (
