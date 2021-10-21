@@ -11,9 +11,16 @@ class App extends Component {
 
   dataFetch = () => {
     // console.log("click");
-    fetch(API).then((res) => {
-      console.log(res);
-    });
+    fetch(API)
+      .then((res) => {
+        if (res.ok) {
+          console.log(res);
+          return res;
+        }
+        throw Error(res.status);
+      })
+      .then()
+      .catch((error) => console.log(error));
   };
 
   render() {
