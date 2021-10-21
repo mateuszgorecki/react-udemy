@@ -12,7 +12,7 @@ const UsersList = (props) => {
       <p>{user.email}</p>
     </li>
   ));
-  return <ul>{users}</ul>;
+  return <ul className="users">{users}</ul>;
 };
 
 export default UsersList;
