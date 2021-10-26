@@ -1,0 +1,33 @@
+.main-wrapper {
+  text-align: center;
+}
+
+input {
+  font-size: large;
+  padding: 5px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  background-color: #abcdef;
+  box-sizing: border-box;
+}
+
+button {
+  font-size: large;
+  padding: 5px;
+  cursor: pointer;
+}
+ul {
+  text-align: left;
+}
+
+li {
+  list-style-type: none;
+  font-size: larger;
+  padding: 10px 0 10px 20px;
+}
