@@ -22,3 +22,12 @@ button {
   padding: 5px;
   cursor: pointer;
 }
+ul {
+  text-align: left;
+}
+
+li {
+  list-style-type: none;
+  font-size: larger;
+  padding: 10px 0 10px 20px;
+}
