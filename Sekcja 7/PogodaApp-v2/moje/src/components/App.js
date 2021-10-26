@@ -22,47 +22,75 @@ class App extends Component {
       value: e.target.value,
     });
   };
-  citySubmit = (e) => {
-    e.preventDefault();
-    const API = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.value}${addParams}&appid=${APIKey}`;
 
-    fetch(API)
-      .then((res) => {
-        if (res.ok) return res;
-        throw Error("Something isnt yes");
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        const time = new Date().toLocaleString();
-        this.setState({
-          err: false,
-          date: time,
-          sunrise: data.sys.sunrise,
-          sunset: data.sys.sunset,
-          temp: data.main.temp,
-          pressure: data.main.pressure,
-          wind: data.wind.speed,
-          city: data.name,
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.value !== this.state.value) {
+      const API = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.value}${addParams}&appid=${APIKey}`;
+
+      fetch(API)
+        .then((res) => {
+          if (res.ok) return res;
+          throw Error("Something isnt yes");
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          const time = new Date().toLocaleString();
+          this.setState({
+            err: false,
+            date: time,
+            sunrise: data.sys.sunrise,
+            sunset: data.sys.sunset,
+            temp: data.main.temp,
+            pressure: data.main.pressure,
+            wind: data.wind.speed,
+            city: data.name,
+          });
+        })
+        .catch(() => {
+          this.setState((prevState) => ({
+            err: true,
+            city: prevState.value,
+          }));
         });
-      })
-      .catch(() => {
-        this.setState((prevState) => ({
-          err: true,
-          city: prevState.value,
-        }));
-      });
-  };
+    }
+  }
+  // citySubmit = (e) => {
+  //   e.preventDefault();
+  //   const API = `https://api.openweathermap.org/data/2.5/weather?q=${this.state.value}${addParams}&appid=${APIKey}`;
+
+  //   fetch(API)
+  //     .then((res) => {
+  //       if (res.ok) return res;
+  //       throw Error("Something isnt yes");
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const time = new Date().toLocaleString();
+  //       this.setState({
+  //         err: false,
+  //         date: time,
+  //         sunrise: data.sys.sunrise,
+  //         sunset: data.sys.sunset,
+  //         temp: data.main.temp,
+  //         pressure: data.main.pressure,
+  //         wind: data.wind.speed,
+  //         city: data.name,
+  //       });
+  //     })
+  //     .catch(() => {
+  //       this.setState((prevState) => ({
+  //         err: true,
+  //         city: prevState.value,
+  //       }));
+  //     });
+  // };
 
   render() {
     const { city, err } = this.state;
     return (
       <div className="main-wrapper">
         <h1>Apka pogodowa</h1>
-        <Form
-          value={this.state.value}
-          action={this.changeInput}
-          submit={this.citySubmit}
-        />
+        <Form value={this.state.value} action={this.changeInput} />
         {err ? (
           `Nie ma w bazie miejscowości ${city}`
         ) : city ? (
