@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import AddTask from "./AddTask";
 import TaskList from "./TaskList";
-import "./App.css";
+import "../styles/App.css";
 
 class App extends Component {
-  counter = 9;
   state = {
     tasks: [
       {
@@ -82,8 +81,25 @@ class App extends Component {
     ],
   };
 
+  changeTaskStatus = (id) => {
+    console.log("change status: " + id);
+  };
+
+  deleteTask = (id) => {
+    console.log("delete: " + id);
+  };
+
   render() {
-    return <div className="App">git</div>;
+    return (
+      <div className="App">
+        <AddTask />
+        <TaskList
+          tasks={this.state.tasks}
+          status={this.changeTaskStatus}
+          delete={this.deleteTask}
+        />
+      </div>
+    );
   }
 }
 
