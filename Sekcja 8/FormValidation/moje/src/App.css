@@ -12,9 +12,11 @@ input {
   outline: none;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="checkbox"] > label {
   margin-left: 0;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 button {
@@ -22,6 +24,7 @@ button {
   max-width: 200px;
   padding: 10px 20px;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 span {

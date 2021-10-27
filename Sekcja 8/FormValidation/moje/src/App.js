@@ -4,19 +4,27 @@ import "./App.css";
 class App extends Component {
   state = {
     username: "",
+    email: "",
+    password: "",
+    checkbox: false,
   };
 
   userChange = (e) => {
-    console.log(e.target.type);
-    console.log(e.target.name);
+    // console.log(e.target.value);
+    // console.log(e.target.type);
+    const name = e.target.name;
     this.setState({
-      username: e.target.value,
+      [name]: e.target.value,
     });
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("dziala");
+  };
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit} noValidate>
         <h1>Formularz</h1>
         <label htmlFor="user">
           Imię:{" "}
@@ -29,13 +37,31 @@ class App extends Component {
           />
         </label>
         <label htmlFor="email">
-          Email: <input type="email" id="email" />
+          Email:{" "}
+          <input
+            type="email"
+            id="email"
+            name="email"
+            onChange={this.userChange}
+          />
         </label>
         <label htmlFor="password">
-          Hasło: <input type="password" id="password" />
+          Hasło:{" "}
+          <input
+            type="password"
+            id="password"
+            name="password"
+            onChange={this.userChange}
+          />
         </label>
         <label htmlFor="checkbox">
-          <input type="checkbox" name="" id="checkbox" /> Akceptuje regulamin
+          <input
+            type="checkbox"
+            name="checkbox"
+            id="checkbox"
+            onChange={this.userChange}
+          />{" "}
+          Akceptuje regulamin
         </label>
         <button>Wyślij formularz </button>
       </form>
