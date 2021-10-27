@@ -83,10 +83,30 @@ class App extends Component {
 
   changeTaskStatus = (id) => {
     console.log("change status: " + id);
+    let tasks = Array.from(this.state.tasks);
+    tasks.forEach((task) => {
+      if (task.id === id) {
+        task.active = false;
+        task.finishDate = new Date().getTime();
+      }
+    });
+    this.setState({
+      tasks,
+    });
   };
 
   deleteTask = (id) => {
-    console.log("delete: " + id);
+    // const tasks = [...this.state.tasks];
+    // const index = tasks.findIndex((task) => task.id === id);
+    // tasks.splice(index, 1);
+    // this.setState({
+    //   tasks,
+    // });
+    let tasks = [...this.state.tasks];
+    tasks = tasks.filter((task) => task.id !== id);
+    this.setState({
+      tasks,
+    });
   };
 
   render() {
