@@ -12,8 +12,7 @@ input {
   outline: none;
 }
 
-input[type="checkbox"],
-input[type="checkbox"] > label {
+input[type="checkbox"] {
   margin-left: 0;
   margin-right: 10px;
   cursor: pointer;
@@ -30,4 +29,9 @@ button {
 span {
   color: red;
   font-size: 10px;
+}
+
+
+label {
+  cursor:pointer
 }
