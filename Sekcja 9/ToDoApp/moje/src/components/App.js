@@ -9,15 +9,15 @@ class App extends Component {
       {
         id: 0,
         text: "zagrać wreszcie w Wiedźmina 3",
-        date: "2018-02-15",
+        date: "02/15/2018",
         important: true,
         active: true,
         finishDate: null,
       },
       {
         id: 1,
-        text: "zrobić dobry uczynej",
-        date: "2020-11-12",
+        text: "zrobić dobry uczynek",
+        date: "11/12/2020",
         important: false,
         active: true,
         finishDate: null,
@@ -25,7 +25,7 @@ class App extends Component {
       {
         id: 2,
         text: "pomalować dom po sylwestrze",
-        date: "2019-09-11",
+        date: "09/11/2019-09-11",
         important: false,
         active: true,
         finishDate: null,
@@ -33,7 +33,7 @@ class App extends Component {
       {
         id: 3,
         text: "schudnąć 30 kilogramów",
-        date: "2019-05-20",
+        date: "05/20/2019",
         important: true,
         active: true,
         finishDate: null,
@@ -41,7 +41,7 @@ class App extends Component {
       {
         id: 4,
         text: "sprzedać butelki po piwie (20 skrzynek)",
-        date: "2020-11-12",
+        date: "11/12/2020",
         important: false,
         active: true,
         finishDate: null,
@@ -49,7 +49,7 @@ class App extends Component {
       {
         id: 5,
         text: "jeszcze raz pomalować dom",
-        date: "2019-09-11",
+        date: "09/11/2019",
         important: false,
         active: true,
         finishDate: null,
@@ -57,7 +57,7 @@ class App extends Component {
       {
         id: 6,
         text: "fryzjer!!!",
-        date: "2019-05-20",
+        date: "05/20/2019",
         important: true,
         active: true,
         finishDate: null,
@@ -65,7 +65,7 @@ class App extends Component {
       {
         id: 7,
         text: "nie odbierać poleconego od komornika",
-        date: "2020-11-12",
+        date: "11/12/2020",
         important: false,
         active: true,
         finishDate: null,
@@ -73,7 +73,7 @@ class App extends Component {
       {
         id: 8,
         text: "kupić 2 butelki litrowe",
-        date: "2019-09-11",
+        date: "09/11/2019",
         important: false,
         active: true,
         finishDate: null,
@@ -87,7 +87,7 @@ class App extends Component {
     tasks.forEach((task) => {
       if (task.id === id) {
         task.active = false;
-        task.finishDate = new Date().getTime();
+        task.finishDate = new Date().toLocaleString();
       }
     });
     this.setState({
