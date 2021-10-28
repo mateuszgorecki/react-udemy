@@ -25,6 +25,8 @@ class AddTask extends Component {
     }
   };
 
+  handleClick = () => {};
+
   render() {
     let maxDate = this.minDate.slice(0, 4) * 1 + 1;
     maxDate = `${maxDate}-12-31`;
@@ -61,7 +63,9 @@ class AddTask extends Component {
               max={maxDate}
             />
             <br />
-            <button type="submit">Dodaj</button>
+            <button type="submit" onClick={this.handleClick}>
+              Dodaj
+            </button>
           </label>
         </form>
         <hr />
