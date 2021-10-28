@@ -25,7 +25,22 @@ class AddTask extends Component {
     }
   };
 
-  handleClick = () => {};
+  handleClick = (e) => {
+    e.preventDefault();
+    const { text, date, checkbox } = this.state;
+    if (text.length > 3) {
+      const add = this.props.add(text, date, checkbox);
+      if (add) {
+        this.setState({
+          text: "",
+          date: this.minDate,
+          checkbox: false,
+        });
+      }
+    } else {
+      console.log("za krótkie zadanie");
+    }
+  };
 
   render() {
     let maxDate = this.minDate.slice(0, 4) * 1 + 1;
@@ -45,7 +60,7 @@ class AddTask extends Component {
               type="checkbox"
               name="checkbox"
               id="checkbox"
-              checked={this.state.checked}
+              checked={this.state.checkbox}
               onChange={this.handleInput}
             />{" "}
             Priorytet
@@ -63,9 +78,7 @@ class AddTask extends Component {
               max={maxDate}
             />
             <br />
-            <button type="submit" onClick={this.handleClick}>
-              Dodaj
-            </button>
+            <button onClick={this.handleClick}>Dodaj</button>
           </label>
         </form>
         <hr />

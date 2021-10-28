@@ -80,9 +80,9 @@ class App extends Component {
       },
     ],
   };
+  counter = this.state.tasks.length;
 
   changeTaskStatus = (id) => {
-    console.log("change status: " + id);
     let tasks = Array.from(this.state.tasks);
     tasks.forEach((task) => {
       if (task.id === id) {
@@ -108,11 +108,27 @@ class App extends Component {
       tasks,
     });
   };
+  addTask = (text, date, important) => {
+    const task = {
+      id: this.counter,
+      text,
+      date,
+      important,
+      active: true,
+      finishDate: null,
+    };
+    this.counter++;
 
+    this.setState((prevState) => ({
+      tasks: [...prevState.tasks, task],
+    }));
+
+    return true;
+  };
   render() {
     return (
       <div className="App">
-        <AddTask />
+        <AddTask add={this.addTask} />
         <TaskList
           tasks={this.state.tasks}
           status={this.changeTaskStatus}
