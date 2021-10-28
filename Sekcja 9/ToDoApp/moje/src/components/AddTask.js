@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "../styles/AddTask.css";
 class AddTask extends Component {
+  minDate = new Date().toISOString().slice(0, 10);
+
   state = {
     text: "",
-    date: "",
+    date: this.minDate,
     checkbox: false,
   };
   handleInput = (e) => {
@@ -16,7 +18,6 @@ class AddTask extends Component {
       this.setState({
         [name]: value,
       });
-      console.log("cokolwiek");
     } else if (type === "checkbox") {
       this.setState({
         [name]: checked,
@@ -25,6 +26,8 @@ class AddTask extends Component {
   };
 
   render() {
+    let maxDate = this.minDate.slice(0, 4) * 1 + 1;
+    maxDate = `${maxDate}-12-31`;
     return (
       <div className="form">
         <form>
@@ -54,8 +57,8 @@ class AddTask extends Component {
               id="date"
               value={this.state.date}
               onChange={this.handleInput}
-              min="2021-11-01"
-              max="2022-12-01"
+              min={this.minDate}
+              max={maxDate}
             />
             <br />
             <button type="submit">Dodaj</button>
