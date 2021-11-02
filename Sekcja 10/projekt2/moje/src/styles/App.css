@@ -4,7 +4,6 @@ div.app {
   min-height: 100vh;
   width: 90%;
   margin: 0 auto;
-
   color: #222;
 }
 
@@ -22,11 +21,9 @@ main {
 
 aside {
   min-width: 240px;
-  
 }
 section.page {
   flex-grow: 1;
- 
 }
 
 footer {
