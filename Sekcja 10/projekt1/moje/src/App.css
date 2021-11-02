@@ -26,12 +26,10 @@ a {
   text-decoration: none;
   text-transform: uppercase;
   border-bottom: 4px solid black;
-
 }
 
 a:hover {
   color: yellow;
-  
 }
 
 section {
@@ -40,17 +38,17 @@ section {
 }
 
 .active {
-border-bottom-color: red;
+  border-bottom-color: red;
 }
 
 .home_selected {
-  border-bottom-color:orange;
+  border-bottom-color: orange;
 }
 
 .news_selected {
-  border-bottom-color:green;
+  border-bottom-color: green;
 }
 
 .contact_selected {
-  border-bottom-color:blueviolet;
+  border-bottom-color: blueviolet;
 }
