@@ -23,7 +23,10 @@ const articles = [
 ];
 
 const HomePage = () => {
-  return <>Homepage</>;
+  const artList = articles.map((article) => (
+    <Article key={article.id} {...article} />
+  ));
+  return <div className="home">{artList}</div>;
 };
 
 export default HomePage;
