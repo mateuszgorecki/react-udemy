@@ -5,7 +5,9 @@ import Product from "../components/Product";
 const ProductPage = ({ match }) => {
   return (
     <>
-      <div>ProductPage</div>
+      <div>Strona produktu</div>
+      <Product id={match.params.id} />
+      <Link to="/products">Powrót do listy produktów</Link>
     </>
   );
 };

@@ -5,7 +5,20 @@ import "../styles/ProductListPage.css";
 const products = ["car", "bike", "motorcycle"];
 
 const ProductListPage = () => {
-  return <div className="products"></div>;
+  const list = products.map((product) => (
+    <li key={product}>
+      <Link to={`/products/${product}`}>{product}</Link>
+    </li>
+  ));
+
+  return (
+    <div className="products">
+      <h2>Lista produktów</h2>
+      <div>
+        <ul>{list}</ul>
+      </div>
+    </div>
+  );
 };
 
 export default ProductListPage;
