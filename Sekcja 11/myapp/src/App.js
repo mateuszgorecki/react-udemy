@@ -1,76 +1,32 @@
 import React, { Component } from "react";
+import Text from "./Text";
+import "./App.css";
 
 class App extends Component {
   state = {
-    active: false,
+    underline: false,
   };
 
   render() {
-    // const btn_off = {
-    //   border: "2px solid black",
-    //   padding: "10px 20px",
-    //   fontFamily: "arial",
-    //   fontSize: 30,
-    //   display: "block",
-    //   margin: "20px auto",
-    //   backgroundColor: "white",
-    // };
+    const text = "Witaj na stronie";
+    // let classes = "";
+    // if (this.state.underline) classes += " line";
+    // if (text.length > 10) classes += " big";
 
-    // const btn_on = {
-    //   border: "2px solid black",
-    //   padding: "10px 20px",
-    //   fontFamily: "arial",
-    //   fontSize: 30,
-    //   display: "block",
-    //   margin: "20px auto",
-    //   backgroundColor: "cadetblue",
-    //   color: "white",
-    // };
-
-    // const styles = {
-    //   btn_off: {
-    //     border: "2px solid black",
-    //     padding: "10px 20px",
-    //     fontFamily: "arial",
-    //     fontSize: 30,
-    //     display: "block",
-    //     margin: "20px auto",
-    //     backgroundColor: "white",
-    //   },
-    //   btn_on: {
-    //     borer: "2px solid black",
-    //     padding: "10px 20px",
-    //     fontFamily: "arial",
-    //     fontSize: 30,
-    //     display: "block",
-    //     margin: "20px auto",
-    //     backgroundColor: "cadetblue",
-    //     color: "white",
-    //   },
-    // };
-
-    let btn = {
-      borer: "2px solid black",
-      padding: "10px 20px",
-      fontFamily: "arial",
-      fontSize: 30,
-      display: "block",
-      margin: "20px auto",
-    };
-
-    if (this.state.active) {
-      btn.backgroundColor = "cadetblue";
-      btn.color = "white";
-    }
-
+    const classes = ["one"];
+    if (this.state.underline) classes.push(" line");
+    if (text.length > 10) classes.push(" big");
     return (
-      <div>
-        <button
-          style={btn}
-          onClick={() => this.setState({ active: !this.state.active })}
-        >
-          {this.state.active ? "Wyłącz" : "Włącz"}
-        </button>
+      <div
+        className="app"
+        onClick={() =>
+          this.setState({
+            underline: !this.state.underline,
+          })
+        }
+      >
+        <h1 className={classes.join(" ")}>{text}</h1>
+        <Text />
       </div>
     );
   }
