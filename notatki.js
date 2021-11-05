@@ -333,3 +333,4 @@ xhr.onload = () => {}
 fetch(`adres.url`)
 .then(res => console.log('działa'))
 .catch(err)
+

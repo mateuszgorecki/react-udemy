@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import "./style.css";
-
 const App = () => {
+  const [state, setState] = React.useState(0);
+
+  const handler = () => setState((prevState) => prevState + 1);
+
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-      <p>Type something</p>
+    <div onClick={handler}>
+      <p>{state}</p>
+      <p>Licznik</p>
     </div>
   );
 };
 
-export default App;
+ReactDOM.render(<App />, document.getElementById("root"));
