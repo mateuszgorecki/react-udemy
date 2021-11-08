@@ -1,37 +1,29 @@
-import { PureComponent } from 'react';
-
-import { AppContext } from './AppContext';
-
-// GORSZA WERSJA JAK MOŻNA WYKORZYSTAĆ
-// class UserInfo extends PureComponent {
-//   render() {
-//     return (
-//       <AppContext.Consumer>
-//         {
-//           ({isUserLogged}) => (
-//             <div>
-//               <p>Użytkownik jest { isUserLogged ? 'zalogowany' : 'niezalogowany' }</p>
-//             </div>
-//           )
-//         }
-//       </AppContext.Consumer>
-//     );
-//   }
-// }
-
-// LEPSZA WERSJA
+import { PureComponent } from "react";
+import { AppContext } from "./AppContext";
 class UserInfo extends PureComponent {
   static contextType = AppContext;
 
   render() {
     const { isUserLogged } = this.context;
-    const userLoggedInfo = isUserLogged ? 'zalogowany' : 'niezalogowany';
-
+    const loggedInfo = isUserLogged ? "Zalogowany" : "Nie zalogowany";
     return (
       <div>
-        <p>Użytkownik jest { userLoggedInfo }</p>
+        <p>Użytkownik jest {loggedInfo}</p>
       </div>
     );
+
+    // return (
+    //   <AppContext.Consumer>
+    //   {
+    //     ({isUserLogged})=>(
+    //       <div>
+    //      {console.log(isUserLogged) }
+    //         <p>Użytkownik jest {isUserLogged ? 'zalogowany' : 'niezalogowany'}</p>
+    //       </div>
+    //     )
+    //   }
+    //   </AppContext.Consumer>
+    // );
   }
 }
 
