@@ -1,21 +1,31 @@
 import React, { Component, createRef } from "react";
+import Counter from "./Counter";
 
 import "./App.css";
 
 class App extends Component {
-  textInput = createRef();
+  state = {
+    isCounterVisible: true,
+  };
   paragraphElement = createRef();
 
-  focusTextInput = () => this.textInput.current.focus();
   addChar = () => (this.paragraphElement.current.textContent += "!");
 
+  toggleVisibilityCounter = () =>
+    this.setState((prevState) => {
+      return { isCounterVisible: !prevState.isCounterVisible };
+    });
+
   render() {
+    const counterElement = this.state.isCounterVisible ? <Counter /> : null;
     return (
       <div>
-        <input ref={this.textInput} type="text" />
         <p ref={this.paragraphElement}>Hello</p>
-        <button onClick={this.focusTextInput}>Focus na input</button>
         <button onClick={this.addChar}>Add '!'</button>
+        <button onClick={this.toggleVisibilityCounter}>
+          Pokaz/ukryj counter
+        </button>
+        {counterElement}
       </div>
     );
   }
