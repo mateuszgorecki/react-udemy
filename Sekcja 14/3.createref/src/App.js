@@ -1,34 +1,26 @@
-import React, { Component, createRef } from "react";
-import Counter from "./Counter";
+import React, { createRef, useEffect, useRef, useState } from "react";
 
-import "./App.css";
+const App = () => {
+  const [counter, setCounter] = useState(0);
+  const textInputRef = useRef(true);
+  const numberInputRef = createRef();
 
-class App extends Component {
-  state = {
-    isCounterVisible: true,
-  };
-  paragraphElement = createRef();
+  const focusOnInput = () => textInputRef.current.focus();
+  const increaseCounter = () => setCounter(counter + 1);
 
-  addChar = () => (this.paragraphElement.current.textContent += "!");
+  //jeśli input ma być na focusie od pierwszego renderu
+  useEffect(() => {
+    textInputRef.current.focus();
+  }, []);
 
-  toggleVisibilityCounter = () =>
-    this.setState((prevState) => {
-      return { isCounterVisible: !prevState.isCounterVisible };
-    });
-
-  render() {
-    const counterElement = this.state.isCounterVisible ? <Counter /> : null;
-    return (
-      <div>
-        <p ref={this.paragraphElement}>Hello</p>
-        <button onClick={this.addChar}>Add '!'</button>
-        <button onClick={this.toggleVisibilityCounter}>
-          Pokaz/ukryj counter
-        </button>
-        {counterElement}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <input ref={textInputRef} type="text" />
+      <input ref={numberInputRef} type="number" />
+      <button onClick={focusOnInput}>Focus na input</button>
+      <button onClick={increaseCounter}>Rerender</button>
+    </div>
+  );
+};
 
 export default App;
