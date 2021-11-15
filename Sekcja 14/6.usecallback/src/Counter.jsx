@@ -1,10 +1,10 @@
 import React from "react";
 
-const Counter = ({ counter, index }) => {
+const Counter = ({ callback, index }) => {
   console.log(`render licznika numer ${index}`);
   return (
     <div>
-      Licznik nr {index} wynosi: {counter.x}
+      <button onClick={callback}> Zwiększ licznik {index}</button>
     </div>
   );
 };

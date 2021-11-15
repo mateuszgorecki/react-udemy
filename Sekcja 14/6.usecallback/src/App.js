@@ -1,34 +1,37 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import Counter from "./Counter";
 
-function App() {
-  const [state, setState] = useState({ x: 0, y: 0 });
-  // const [firstCounter, setFirstCounter] = useState(0);
-  // const [secondCounter, setSecondCounter] = useState(0);
+const App = () => {
+  const [firstCounter, setFirstCounter] = useState(0);
+  const [secondCounter, setSecondCounter] = useState(0);
 
-  const increaseX = () => setState({ ...state, x: state.x + 1 });
-  const increaseY = () => setState({ ...state, y: state.y + 1 });
+  // * ta opcja lepsza bo nie trzeba robić re-renderu
+  const increaseFirstCounter = useCallback(
+    () => setFirstCounter((firstCounter) => firstCounter + 1),
+    []
+  );
 
-  // const increaseFirstCounter = () => setFirstCounter(firstCounter + 1);
-  // const increaseSecondCounter = () => setSecondCounter(secondCounter + 1);
+  const increaseSecondCounter = useCallback(
+    () => setSecondCounter(secondCounter + 1),
+    [secondCounter]
+  );
 
-  const firstCounterComponent = useMemo(
-    () => <Counter counter={state} index={1} />,
-    [state]
+  const firstCounterComponent = (
+    <Counter callback={increaseFirstCounter} index={1} />
+  );
+  const secondCounterComponent = (
+    <Counter callback={increaseSecondCounter} index={2} />
   );
 
   return (
     <div className="App">
-      <p>Licznik nr1 wynosi: {state.x}</p>
-      <p>Licznik nr2 wynosi: {state.y}</p>
+      <p>Licznik nr1 wynosi: {firstCounter}</p>
+      <p>Licznik nr2 wynosi: {secondCounter}</p>
       {firstCounterComponent}
-      {/* <Counter counter={state} index={1} /> */}
-      <Counter counter={state} index={2} />
-      <button onClick={increaseX}>Zwiększ licznik numer 1</button>
-      <button onClick={increaseY}>Zwiększ licznik numer 2</button>
+      {secondCounterComponent}
     </div>
   );
-}
+};
 
 export default App;
